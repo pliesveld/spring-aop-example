@@ -1,12 +1,4 @@
-Spring Boot tutorial with gradle
-
-Usage
-===
-
-./gradlew build
-
-./gradlew bootRun
-
-navigate to http://localhost:8080/greeting
+A spring boot example demonstrating aop.  Greeting service creates a message containing the requester's name.  An aspect inspects
+the name before method invocation and throws InvalidNameException if the name is 'swearWord'.
 
 

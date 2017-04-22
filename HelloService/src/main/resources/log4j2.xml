@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration xmlns:xi="http://www.w3.org/2001/XInclude" 
-    configDebug="false" monitorInterval="1" status="ERROR" name="CONFIG_DEV">
+    configDebug="false" monitorInterval="100" status="ERROR" name="CONFIG_DEV">
 
     <Properties>
         <Property name="logFolder">/tmp/log</Property>
@@ -20,7 +20,7 @@
 
         <Property name="LOG_MVC_LEVEL">WARN</Property>
         <Property name="LOG_SECURITY_LEVEL">WARN</Property>
-        <Property name="LOG_APP_LEVEL">WARN</Property>
+        <Property name="LOG_APP_LEVEL">DEBUG</Property>
         <Property name="LOG_AUDIT_LEVEL">WARN</Property>
 
         <Property name="LOG_SPRING_LEVEL">WARN</Property>
@@ -32,7 +32,6 @@
         <Property name="filters">org.junit,org.apache.maven,sun.reflect,java.lang.reflect</Property>
 
         <Property name="leveltag">%highlight{%-5level}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=cyan bold, DEBUG=green bold, TRACE=blue}</Property>
-
         <Property name="loggertag">%.20c</Property>
         <Property name="loggertag_debug">%.20c#%green{%.20method}</Property>
         <Property name="exceptiontag_filtered">%xEx{filters(${filters})}</Property>
@@ -66,11 +65,6 @@
                 <KeyValuePair key="TRACE" value="DEBUG"/>
             </LoggerNameLevelRewritePolicy>
         </Rewrite>
-
-        <File name="FileSpringWeb" fileName="${sys:logFolder}/${springweb}" append="false">
-            <PatternLayout pattern="%msg%n"/>
-        </File>
-
     </Appenders>
 
     <Loggers>
@@ -88,7 +82,7 @@
         </logger>
 
         <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="INFO" additivity="false">
-            <AppenderRef ref="FileSpringWeb"/>
+            <AppenderRef ref="CONSOLE_SPRING"/>
         </logger>
 
         <logger name="org.springframework.transaction.support.TransactionSynchronizationManager" level="${sys:LOG_TRANS_SYNC_LEVEL}" additivity="false">

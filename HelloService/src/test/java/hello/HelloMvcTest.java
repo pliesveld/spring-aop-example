@@ -61,14 +61,13 @@ public class HelloMvcTest {
     @Parameters({
         "name, 200",
         "MVC, 200",
-        "swearWord, 200"
+        "swearWord, 400"
     })
     public void whenGreetingWithName_shouldMessage(String name, int expectedStatus) throws Exception {
         mvc.perform(
             get("/greeting").contentType(MediaType.APPLICATION_JSON)
             .param("name", name)
         )
-        .andExpect(status().is(expectedStatus))
-        .andExpect(jsonPath("content", stringContainsInOrder(Arrays.asList("Hello, ", name, "!"))));
+        .andExpect(status().is(expectedStatus));
     }
 }

@@ -61,5 +61,17 @@ public class HelloIntegrationTest extends AbstractIntegrationTest {
 
         assertTrue("Counter should increase", second > first);
     }
+
+    @Test
+    public void givenGreeting_whenSupplyingInappropriateName_shouldNotGreet() throws Exception {
+        given()
+            .queryParam("name", "swearWord")
+        .when()
+            .get("/greeting")
+        .then()
+            .statusCode(not(200))
+            .body("content", not(containsString("swearWord")));
+    }
+
 }
 
